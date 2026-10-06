@@ -32,7 +32,6 @@ DeviceOps 是面向**车载定位终端**的运维管理后端。它解决的是
 - [API 文档](#api-文档)
 - [测试命令](#测试命令)
 - [截图占位](#截图占位)
-- [简历描述模板](#简历描述模板)
 - [数据库迁移](#数据库迁移)
 - [响应格式与错误码](#响应格式与错误码)
 - [日志](#日志)
@@ -394,26 +393,6 @@ docker compose exec app pytest -q  # 在容器里跑（镜像内已含 pytest �
 ![Docker compose](docs/images/06-docker.png)
 
 > 占位说明：`docker compose ps` 三个服务均为 healthy，或 `docker compose up --build` 的启动输出。
-
-## 简历描述模板
-
-> 直接复制到简历的"项目经历"里；下面 6 条按"职责 + 技术点 + 结果"组织，可按目标岗位删减到 4 条。措辞刻意用"项目中使用"而非"精通"，面试时更容易站得住。
-
-**设备运维工单管理系统**（个人项目）
-技术栈：FastAPI + SQLAlchemy + MySQL + Redis + JWT + Docker + pytest
-
-- 项目中使用 FastAPI + SQLAlchemy 2.0 设计并实现设备运维后端，按 `api / crud / services / models / schemas` 分层组织代码，独立完成设备、工单、告警、统计四个模块共 26 个 REST 接口的开发与联调。
-- 项目中使用 JWT + OAuth2 Password Flow 实现认证，配合 bcrypt 密码哈希与 admin / engineer / viewer 三级角色依赖注入，把"删除设备仅管理员、指派工单需工程师、改状态仅负责人"等细粒度权限收敛到依赖层统一校验，避免业务代码重复判权。
-- 设计并实现工单状态机（pending → processing → resolved → closed），在服务端强制校验跳级、回退与终态变更并返回明确原因，配套 48 个 pytest + httpx 自动化用例覆盖认证、CRUD、分页、权限与状态流转，回归耗时约 1.7 秒。
-- 项目中使用 Pydantic v2 统一请求校验、以 `{code, message, data}` 统一响应结构，并通过全局异常处理器把 401/403/404/405/409/422/500 与参数校验错误收敛为同一格式，前端只需处理一套错误约定。
-- 项目中使用 SQLAlchemy + Alembic 管理数据库结构，通过 `DATABASE_URL` 一处配置在 SQLite 与 MySQL 8 之间切换（开发免装数据库、生产直连 MySQL）；统计接口用 SQL 聚合（`count` / `case` / `group by`）计算设备在线率与告警 TOP，避免 Python 侧全量遍历。
-- 项目中使用 Docker Compose 编排 app + MySQL + Redis 三个服务，镜像基于 `python:3.11-slim` 以非 root 用户运行，容器启动自动执行 Alembic 迁移，并用健康检查保证依赖就绪顺序，实现一条命令拉起完整环境。
-
-使用前请核对（避免面试被追问）：
-
-- Redis 目前在编排与配置层面就绪，但业务代码**尚未真正读写**，被问到时应说明是"已接入未使用"，或干脆从简历技术栈里去掉；
-- 接口数量 26、测试数量 48、回归耗时 1.7 秒，均为当前代码实测值，改动代码后请同步更新；
-- 项目为个人练习项目，没有真实用户量与并发数据，不要编造 QPS、可用性之类的指标。
 
 ## 数据库迁移
 
