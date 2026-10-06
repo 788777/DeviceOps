@@ -23,9 +23,37 @@ logs/
 *.log
 
 # ===== 环境变量与密钥（只提交 .env.example）=====
+# 用 .env.* 通配覆盖 .env.local / .env.production / .env.staging 等所有变体，
+# 再显式把 .env.example 加回来（示例文件不含真实密钥，需要进仓库）
 .env
-.env.local
-.env.production
+.env.*
+!.env.example
+
+# 证书 / 私钥 / 密钥库（绝对不要进仓库）
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.crt
+*.kdbx
+id_rsa*
+*service-account*.json
+*credentials*.json
+secrets/
+
+# ===== 本地 AI / 编辑器工具配置（可能缓存 token 或账号信息）=====
+.codex/
+.claude/
+.cursor/
+.continue/
+.aider*
+
+# ===== 备份与临时文件 =====
+*.bak
+*.orig
+*.tmp
+~$*
 
 # ===== 编辑器 / 系统 =====
 .idea/
