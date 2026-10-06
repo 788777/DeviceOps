@@ -10,4 +10,7 @@ python-jose[cryptography]>=3.3.0
 python-multipart>=0.0.9
 alembic>=1.13.0
 pymysql>=1.1.0
+# httpx2：Starlette 新版 TestClient 的必需依赖（缺了 pytest 会直接 ImportError）
+# 只有装了 httpx（旧包）时会走已废弃路径并打印警告，所以这里显式声明 httpx2
+httpx2>=2.0.0
 pytest>=8.0.0
