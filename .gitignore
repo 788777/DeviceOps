@@ -1,0 +1,36 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ===== 本地数据库（容器里用 MySQL，本地用 SQLite）=====
+*.db
+*.db.bak*
+*.sqlite
+*.sqlite3
+_tmp_*.db
+
+# ===== 日志 =====
+logs/
+*.log
+
+# ===== 环境变量与密钥（只提交 .env.example）=====
+.env
+.env.local
+.env.production
+
+# ===== 编辑器 / 系统 =====
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

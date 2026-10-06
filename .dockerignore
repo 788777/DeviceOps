@@ -1,0 +1,42 @@
+# ===== Python 运行环境 =====
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ===== 本地数据库与日志（容器里用 MySQL / named volume）=====
+*.db
+*.db.bak*
+*.sqlite
+*.sqlite3
+_tmp_*.db
+logs/
+
+# ===== 环境变量与密钥（不给镜像，容器由 compose 注入）=====
+.env
+.env.local
+.env.production
+
+# ===== 版本控制与编辑器 =====
+.git/
+.gitignore
+.gitattributes
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ===== 文档与部署辅助 =====
+*.md
+docker-compose*.yml
+Dockerfile*
