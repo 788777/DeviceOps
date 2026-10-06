@@ -10,7 +10,9 @@ python-jose[cryptography]>=3.3.0
 python-multipart>=0.0.9
 alembic>=1.13.0
 pymysql>=1.1.0
-# httpx2：Starlette 新版 TestClient 的必需依赖（缺了 pytest 会直接 ImportError）
-# 只有装了 httpx（旧包）时会走已废弃路径并打印警告，所以这里显式声明 httpx2
+# httpx2：starlette 1.7+ 的 TestClient 依赖（Tom Christie 作者、pydantic 组织维护）。
+# 出处：starlette/testclient.py 里 `import httpx2 as httpx`，找不到时会抛
+# RuntimeError: The starlette.testclient module requires the httpx2 package。
+# 明文 httpx 仍可用，但 starlette 已将其标记为 deprecated，故此处跟随上游用 httpx2。
 httpx2>=2.0.0
 pytest>=8.0.0
