@@ -1,0 +1,31 @@
+# 让 GitHub 每周自动检查依赖更新：
+# - pip：requirements.txt（FastAPI、SQLAlchemy、pytest 等）
+# - github-actions：ci.yml 里用到的 action 版本
+# 每个更新都会自动开一个 PR，CI 会跑一遍，绿了再合并。
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "chore(deps)"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    commit-message:
+      prefix: "ci(deps)"

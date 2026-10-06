@@ -4,6 +4,15 @@ on:
   push:
   pull_request:
 
+# 最小权限：CI 只读代码，不需要写仓库
+permissions:
+  contents: read
+
+# 同一分支连续提交时取消上一次未跑完的任务，省 CI 额度
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: 测试与迁移检查

@@ -1,0 +1,21 @@
+# 统一换行符：仓库内一律存 LF。
+# 否则 Windows（core.autocrlf=true）签出成 CRLF，会在 CI（Linux）和 Docker 里
+# 造成整文件差异、甚至让 Shell 脚本因 CRLF 执行失败。
+* text=auto eol=lf
+
+# 二进制文件不做换行转换，避免损坏
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.xlsx binary
+*.zip binary
+
+# 迁移脚本保持 LF，保证 diff 可读
+alembic/versions/*.py text eol=lf
+
+# Windows 批处理脚本必须保留 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf

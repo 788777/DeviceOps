@@ -5,6 +5,8 @@
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red)
 ![Pydantic](https://img.shields.io/badge/Pydantic-v2-e92063)
 ![Tests](https://img.shields.io/badge/tests-48%20passed-brightgreen)
+[![CI](https://github.com/788777/DeviceOps/actions/workflows/ci.yml/badge.svg)](https://github.com/788777/DeviceOps/actions/workflows/ci.yml)
+[![Gitee](https://img.shields.io/badge/Gitee-%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93-c71d23?logo=gitee&logoColor=white)](https://gitee.com/huatai788/device-ops-ticketing-system)
 
 ## 项目介绍
 
@@ -166,14 +168,18 @@ DATABASE_URL=mysql+pymysql://deviceops:deviceops123@127.0.0.1:3306/deviceops?cha
 
 ## 本地启动
 
-### 1. 准备环境
+### 1. 克隆并准备环境
 
 ```powershell
-cd deviceops
+git clone https://github.com/788777/DeviceOps.git
+cd DeviceOps
+
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1          # Linux/macOS: source .venv/bin/activate
 pip install -r requirements.txt
 ```
+
+> 国内网络可用 Gitee 镜像：`git clone https://gitee.com/huatai788/device-ops-ticketing-system.git`（克隆出的目录名为 `device-ops-ticketing-system`）。
 
 ### 2. 配置环境变量（可选）
 
