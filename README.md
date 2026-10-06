@@ -31,7 +31,7 @@ DeviceOps 是面向**车载定位终端**的运维管理后端。它解决的是
 - [Docker 启动](#docker-启动)
 - [API 文档](#api-文档)
 - [测试命令](#测试命令)
-- [截图占位](#截图占位)
+- [界面截图](#界面截图)
 - [数据库迁移](#数据库迁移)
 - [响应格式与错误码](#响应格式与错误码)
 - [日志](#日志)
@@ -354,45 +354,41 @@ pytest -x -vv                      # 出错即停 + 详细输出
 docker compose exec app pytest -q  # 在容器里跑（镜像内已含 pytest 与 tests/）
 ```
 
-## 截图占位
+## 界面截图
 
-把截图放到 `docs/images/` 目录，文件名与下面一致即可自动显示（建议宽度 1280px 左右，PNG）。
+以下截图取自本项目**实际运行环境**（Docker + MySQL，1440px 宽），不是设计稿。
 
-### 1. Swagger 接口文档
+### 1. Swagger 接口文档（`/docs`）
 
 ![Swagger UI](docs/images/01-swagger.png)
 
-> 占位说明：打开 `/docs` 截图，展示全部 26 个接口分组（auth / users / devices / tickets / alerts / stats）。
+全部 26 个接口按 `auth / users / devices / tickets / alerts / stats` 分组展示；点右上角 Authorize 登录后可直接在页面上调试。
 
-### 2. 登录与 Authorize
+### 2. ReDoc 文档（`/redoc`）
 
-![Authorize](docs/images/02-authorize.png)
+![ReDoc](docs/images/02-redoc.png)
 
-> 占位说明：点开 Authorize 弹窗、输入 admin 账号并登录成功的画面。
+同一份 OpenAPI 规格的另一种阅读视图，适合按接口逐条查阅参数与响应模型。
 
-### 3. 设备列表与筛选
+### 3. 设备接口（Swagger 展开）
 
-![Devices](docs/images/03-devices.png)
+![Devices API](docs/images/03-devices-api.png)
 
-> 占位说明：`GET /api/v1/devices` 的分页返回，或前端设备台账页（含编号搜索、状态筛选）。
+`GET /api/v1/devices` 支持分页、按设备编号/型号搜索与按状态过滤。
 
-### 4. 工单详情与状态流转
+### 4. 工单详情接口（Swagger 展开）
 
-![Ticket detail](docs/images/04-ticket-detail.png)
+![Tickets API](docs/images/04-tickets-api.png)
 
-> 占位说明：工单详情返回（含 device / creator / assignee / comments），或非法流转返回 400 的对比截图。
+`GET /api/v1/tickets/{id}` 返回工单本体及其关联的设备、创建人、负责人与评论列表。
 
-### 5. 运维看板统计
+### 5. 统计接口（Swagger 展开）
 
-![Dashboard](docs/images/05-stats.png)
+![Stats API](docs/images/05-stats-api.png)
 
-> 占位说明：`GET /api/v1/stats/overview` 与 `/stats/alerts-top` 的返回，或前端看板页（在线率、工单分布、告警 TOP）。
+`GET /api/v1/stats/overview` 返回设备总数与在线率、工单状态分布、告警统计。
 
-### 6. Docker 一键启动
-
-![Docker compose](docs/images/06-docker.png)
-
-> 占位说明：`docker compose ps` 三个服务均为 healthy，或 `docker compose up --build` 的启动输出。
+> 本项目为纯后端，暂未提供前端页面，接口调试请使用 `/docs`。后续若补充前端，可在此追加设备台账与运维看板的页面截图。
 
 ## 数据库迁移
 
