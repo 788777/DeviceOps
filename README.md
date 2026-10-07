@@ -349,23 +349,54 @@ pending ──► processing ──► resolved ──► closed
 
 ## 界面截图
 
-以下截图取自实际运行环境（前端 Next.js 控制台 + 后端 Docker/MySQL），不是设计稿。
+以下截图取自本项目实际运行环境（Next.js 控制台 + FastAPI + MySQL），按 2 倍像素密度采集，
+点击图片可查看原始分辨率（前端页面 3200×2000）。
 
-| 登录 | 概览仪表盘 |
-| --- | --- |
-| ![登录](web/docs/screenshots/01-login-dark.png) | ![概览仪表盘](web/docs/screenshots/02-dashboard-top.png) |
+### 登录页 `/login`
 
-| 看板图表 | 设备管理 |
-| --- | --- |
-| ![看板图表](web/docs/screenshots/03-dashboard-charts.png) | ![设备管理](web/docs/screenshots/04-devices.png) |
+![登录页](web/docs/screenshots/01-login-dark.png)
 
-| 告警管理 | 工单管理 |
-| --- | --- |
-| ![告警管理](web/docs/screenshots/05-alerts.png) | ![工单管理](web/docs/screenshots/06-tickets.png) |
+深色优先的登录页，登录成功后 Token 与用户信息写入 `localStorage`。
 
-| 系统设置 | Swagger 接口文档 |
-| --- | --- |
-| ![系统设置](web/docs/screenshots/07-settings.png) | ![Swagger](deviceops/docs/images/01-swagger.png) |
+### 概览仪表盘 `/dashboard`
+
+![概览仪表盘](web/docs/screenshots/02-dashboard-top.png)
+
+顶部为设备总数、活跃告警、待处理工单、设备在线率四张统计卡片。
+
+![看板图表](web/docs/screenshots/03-dashboard-charts.png)
+
+中下部为告警趋势、设备状态分布、工单状态分布、告警 TOP 设备四张图表，以及最近告警与最近工单列表。
+
+### 设备管理 `/devices`
+
+![设备管理](web/docs/screenshots/04-devices.png)
+
+支持关键字搜索、状态筛选、分页，以及按角色显隐的新增/编辑/删除操作。
+
+### 告警管理 `/alerts`
+
+![告警管理](web/docs/screenshots/05-alerts.png)
+
+顶部为告警总数、有效告警、已标记误报三张统计卡片，列表支持类型与误报状态过滤。
+
+### 工单管理 `/tickets`
+
+![工单管理](web/docs/screenshots/06-tickets.png)
+
+列表支持状态与优先级过滤，详情内可指派、流转状态并记录处理评论。
+
+### 系统设置 `/settings`
+
+![系统设置](web/docs/screenshots/07-settings.png)
+
+可在深色/明亮/跟随系统之间切换主题，并检测后端服务连通性。
+
+### 接口文档 `/docs`
+
+![Swagger 接口文档](deviceops/docs/images/01-swagger.png)
+
+26 个接口按 `auth / users / devices / tickets / alerts / stats` 分组展示，点右上角 Authorize 登录后可直接调试。
 
 ## 测试
 

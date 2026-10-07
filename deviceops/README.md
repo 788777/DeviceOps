@@ -363,7 +363,7 @@ docker compose exec app pytest -q  # 在容器里跑（镜像内已含 pytest �
 
 ## 界面截图
 
-以下截图取自本项目**实际运行环境**（Docker + MySQL，1440px 宽），不是设计稿。
+以下截图取自本项目**实际运行环境**（Docker + MySQL，浏览器视口 1600px 宽、2 倍像素密度采集），不是设计稿。
 
 ### 1. Swagger 接口文档（`/docs`）
 
